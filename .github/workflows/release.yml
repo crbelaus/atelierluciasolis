@@ -22,14 +22,14 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test on Erlang ${{env.OTP_VERSION}} / Elixir ${{env.ELIXIR_VERSION}}
+    name: Test on Erlang ${{OTP_VERSION}} / Elixir ${{ELIXIR_VERSION}}
     steps:
     # Step: Setup Elixir + Erlang image as the base.
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
-        otp-version: ${{env.OTP_VERSION}}
-        elixir-version: ${{env.ELIXIR_VERSION}}
+        otp-version: ${{OTP_VERSION}}
+        elixir-version: ${{ELIXIR_VERSION}}
 
     # Step: Check out the code.
     - name: Checkout code
