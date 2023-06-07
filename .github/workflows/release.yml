@@ -91,10 +91,8 @@ jobs:
     - name: Check Formatting
       run: mix format --check-formatted
 
-  # Deploy to Render.com using a deploy hook
-  # https://render.com/docs/deploy-a-commit
   deploy:
-    name: Deploy to render.com
+    name: Deploy to Fly.io
     runs-on: ubuntu-latest
     needs: [test]
     # Run only on main
@@ -102,4 +100,7 @@ jobs:
       github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
-      - run: curl --fail https://api.render.com/deploy/srv-chvkpr64dad1r0c3b62g?key=${{ secrets.RENDER_DEPLOY_KEY }}&ref=${{ github.sha }}
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+            FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
