@@ -8,7 +8,7 @@ primary_region = "mad"
 kill_signal = "SIGTERM"
 
 [env]
-  PHX_HOST = "atelierluciasolis.fly.dev"
+  PHX_HOST = "www.atelierluciasolis.com"
   PORT = "8080"
 
 [http_service]
